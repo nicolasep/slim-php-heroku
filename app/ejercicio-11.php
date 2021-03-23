@@ -1,6 +1,8 @@
 <?php
 
-
+/*Ejercicio 11
+nicolas eduardo perez
+*/
 
 function Potencias()
 {
