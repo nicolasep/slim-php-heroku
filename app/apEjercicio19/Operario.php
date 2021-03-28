@@ -9,7 +9,7 @@ class Operario
 	private $_salario;
 
 
-	public function __construct(int $legajo,string $apellido,string $nombre,float $salario)
+	public function __construct(int $legajo, string $apellido, string $nombre, float $salario)
 	{
 		$this->_legajo = $legajo;
 		$this->_apellido = $apellido;
@@ -17,17 +17,17 @@ class Operario
 		$this->_salario = $salario;
 
 	}
-	
 
-	public function Equals(Operario $op1,Operario $op2)
+
+	public function Equals(Operario $op1, Operario $op2)
 	{
-		return ($op1->GetNombreApellido() == $op2->GetNombreApellido())&& ($op1->_legajo == $op2->_legajo);
+		return ($op1->GetNombreApellido() == $op2->GetNombreApellido()) && ($op1->_legajo == $op2->_legajo);
 	}
 
 	public function GetNombreApellido()
 	{
-		return $this->_nombre." ".$this->_apellido;
-	} 
+		return $this->_nombre . " " . $this->_apellido;
+	}
 
 	public function GetSalario()
 	{
@@ -36,16 +36,16 @@ class Operario
 
 	public function Mostrar()
 	{
-		
+
 		return Operario::MostrarOp($this);
 	}
 	static function MostrarOp(Operario $op)
 	{
-		return "Legajo: ".$op->_legajo." ".$op->GetNombreApellido()." ".$op->GetSalario();
+		return "Legajo: " . $op->_legajo . " " . $op->GetNombreApellido() . " " . $op->GetSalario();
 	}
 	public function SetAumentarSalario(float $aumento)
 	{
-		$this->_salario = $_salario + (($_salario*aumento)/100);
+		$this->_salario += (($this->GetSalario() * $aumento) / 100);
 	}
 
 }
