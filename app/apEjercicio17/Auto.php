@@ -27,7 +27,7 @@ class Auto
     }
     function __construct3($marca, $color, $precio)
     {
-        $this->__construct4($marca, $color, 0, new DateTime());
+        $this->__construct4($marca, $color, $precio, new DateTime());
     }
     function __construct4($marca, $color, $precio, $fecha)
     {
@@ -40,9 +40,9 @@ class Auto
     {
         $this->_precio += $impuesto;
     }
-    static function MostrarAuto($au)
+    static function MostrarAuto(Auto $au)
     {
-        $resul = $au->_marca . " " . $au->_color . " " . $au->_precio . " " . $au->_fecha . "<br/>";
+        $resul = "Marca: " . $au->_marca . " Color: " . $au->_color . " Precio: " . $au->_precio . " Fecha:  " . $au->_fecha->format("d/m/Y") . "<br/>";
         return $resul;
     }
     public function Equals(Auto $auto2)
@@ -52,13 +52,13 @@ class Auto
         }
         return false;
     }
-    static function Add(Auto $au1, Auto $au2)
+    static function Add($au1, $au2)
     {
         if ($au1->Equals($au2) && $au1->_color == $au2->_color) {
             return $au1->_precio + $au2->_precio;
         }
         else {
-            return 0;
+            return 10;
         }
     }
 }
