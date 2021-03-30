@@ -12,23 +12,10 @@ include "Auto.php";
 
 class Garage
 {
-	public function MostrarGarage()
-	{
-		return "Razon Social: ",$this->_razonSocial," Precio por hora: ",$this->_precioPorHora;
-	}
-	public function Equals(Auto $au)
-	{
-		foreach ($this->_autos as $auto) {
-			if($auto->Equals($au))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	private String $_razonSocial;
-	private Double $_precioPorHora;
-	private Auto $_autos;
+
+	private $_razonSocial;
+	private $_precioPorHora;
+	private $_autos;
 
 	public function __construct()
 	{
@@ -42,16 +29,61 @@ class Garage
             call_user_func_array(array($this, $funcionConstructor), $parametros);
         }
 
-        function __construct1($razonSocial)
-        {
-        	$this->__construct2($razonSocial,0);
-        }
-        function __construct2($razonSocial,$precionPorHora)
-        {
-        	$this->_razonSocial = $razonSocial;
-        	$this->_precioPorHora = $precionPorHora;
-        	$this->_autos = array();
-        }
+        
+	}
+	function __construct1($razonSocial)
+	{
+		$this->__construct2($razonSocial,0);
+	}
+	function __construct2($razonSocial,$precionPorHora)
+	{
+		$this->_razonSocial = $razonSocial;
+		$this->_precioPorHora = $precionPorHora;
+		$this->_autos = array();
+	}
+	public function Add(Auto $au)
+	{
+		if($this->Equals($au)==false)
+		{
+			array_push($this->_autos, $au);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function Remove(Auto $au)
+	{
+		for($i=0;$i<count($this->_autos);$i++)
+		{
+			if($this->_autos[$i]->Equals($au))
+			{
+				unset($this->_autos[$i]);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public function MostrarGarage()
+	{
+		$datos = "Razon Social: ".$this->_razonSocial." Precio por hora: ".$this->_precioPorHora."<br/>";
+		foreach($this->_autos as $auto)
+		{
+			$datos = $datos . Auto::MostrarAuto($auto);
+		}
+		return $datos;
+	}
+	public function Equals(Auto $au)
+	{
+		foreach ($this->_autos as $auto) {
+			if($auto->Equals($au))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
