@@ -2,6 +2,7 @@
 
 include "Usuario.php";
 /*
+Nicolas Eduardo Perez
 Aplicación Nº 20 (Registro CSV)
 Archivo: registro.php
 método:POST
@@ -13,19 +14,29 @@ Cada usuario se agrega en un renglón diferente al anterior.
 Hacer los métodos necesarios en la clase usuario
 */
 
+	$nuevoUsuario;
 
 
-	$nuevoUsuario = new Usuario($_POST["nombre"],$_POST["clave"],$_POST["mail"]);
-	//$nuevoUsuar = new Usuario();
-	
-	if(Usuario::Add($nuevoUsuario))
+	if(isset($_POST["nombre"])&&isset($_POST["clave"])&&isset($_POST["mail"]))
 	{
-		return "Usuario agregado con exito!!<br/>";
+
+		$nuevoUsuario = new Usuario($_POST["nombre"],$_POST["clave"],$_POST["mail"]);
+		
+		if(Usuario::Add($nuevoUsuario))
+		{
+			echo "Usuario agregado con exito!!\n";
+		}
+		else
+		{
+			echo "El usuario no se pudo agregar\n";
+		}
 	}
 	else
 	{
-		return "El usuario no se pudo agregar<br/>";
+		echo "Hay campos sin rellenar!!!\n";
 	}
+
+	
 
 
 ?>

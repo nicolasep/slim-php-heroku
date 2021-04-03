@@ -17,16 +17,9 @@ class Usuario
 	{
 		$estado = false;
 
-		if(isset($usuario->_nombre)&&isset($usuario->_clave)&&isset($usuario->_mail))
-
+		if(!(empty($usuario->_nombre))&& !(empty($usuario->_clave))&& !(empty($usuario->_mail)))
 		{
-			
-			if($usuario->_nombre == "admin" && $usuario->_clave == 1234)
-			{
-				$estado = true;
-				
-			}
-			
+			$estado = true;	
 		}
 		
 		return $estado;
