@@ -24,36 +24,36 @@ $miArchivo;
 
 if(isset($_GET["archivo"]))
 {
-	//if($_GET["archivo"]=="usuarios.php")
-	//{
+	if($_GET["archivo"]=="usuarios.php")
+	{
 
 		$miArchivo = fopen("usuarios.csv", "r");
 
-		//if(!(is_null($miArchivo))
-		//{
-			//var_dump($_GET["archivo"]);
+		if(!(is_null($miArchivo)))
+		{
+			
 			while(!feof($miArchivo))
 			{
 				$lineaLeida = fgets($miArchivo);
-				//echo $lineaLeida;
+				
 				$arrayLectura = explode(",", $lineaLeida);
-				//echo "<br/>",$arrayLectura[0];
+				
 				if(count($arrayLectura) == 3)
 				{
 					$usuarioN = new Usuario($arrayLectura[0],$arrayLectura[1],$arrayLectura[2]);
 					 array_push($arrayUsuarios, $usuarioN);
-					 //echo "agrego \n";
 				}
 			}
 			
-			echo "usuarios cargados \n";
+			echo "Usuarios cargados \n";
 			foreach ($arrayUsuarios as $us) 
 			{
 				echo Usuario::MostrarUsuario($us);
 			
 			}
 			fclose($miArchivo);
-		//}
+		}
+	}	
 }
 
 
