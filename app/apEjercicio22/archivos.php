@@ -29,6 +29,7 @@ class Archivos
 			
 			return $arrayUsuarios;
 		}
+		return 0;
 	}
 
 	static function EscribirArchivo($datosACargar,$nombreArchivo)
@@ -36,23 +37,12 @@ class Archivos
 		$resultado = false;
 
 		$miArchivo = fopen($nombreArchivo.".csv", "a");
-/*
-		if(is_array($datosACargar))
+
+		if((fwrite($miArchivo,$datosACargar."\n")) != false)
 		{
-			foreach ($datosACargar as $datos) 
-			{
-				fwrite($datos);
-				$resultado = true;
-			}
+			$resultado = true;
 		}
-		else
-		{*/
-			if((fwrite($miArchivo,$datosACargar."\n")) != false)
-			{
-				$resultado = true;
-			}
 			
-		//}
 		
 		if(feof($miArchivo))
 		{

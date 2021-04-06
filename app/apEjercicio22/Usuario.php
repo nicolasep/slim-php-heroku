@@ -5,9 +5,9 @@ include "archivos.php";
 
 class Usuario
 {
-	public $_nombre;
-	public $_clave;
-	public $_mail;
+	private $_nombre;
+	private $_clave;
+	private $_mail;
 	
 	public function __construct($nombre, $clave, $mail)
 	{
@@ -48,8 +48,7 @@ class Usuario
 	}
 	static function CompararUsuarios($usuario1, $usuario2)
 	{
-		$respuesta = -1;
-
+		
 
 		if($usuario1->_nombre == $usuario2->_nombre)
 		{
@@ -60,18 +59,24 @@ class Usuario
 			 	if($usuario1->_mail != $usuario2->_mail)
 				{
 					
-					 $respuesta = -1;
+					 return -1;
+				}
+				else
+				{
+					return 1;
 				}
 				
 			}
 			else
 			{
-				$respuesta =  0;
+				return  0;
 			}
 			
 		}
-		return $respuesta;
-		
+		else
+		{
+			return 2;
+		}
 		
 	}
 

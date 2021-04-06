@@ -23,11 +23,13 @@ if(isset($_POST["usuario"]) && isset($_POST["clave"]) && isset($_POST["mail"]))
 	$usuarioVerificar = new Usuario($_POST["usuario"],$_POST["clave"],$_POST["mail"]);
 
 	$arrayUsuarios = Archivos::LeerArchivo("usuarios");
+	
 
 	$respuesta=1;
-
+	
 	foreach ($arrayUsuarios as $us) {
 		
+
 		$respuesta = Usuario::CompararUsuarios($usuarioVerificar,$us);
 
 		if($respuesta == 1)
@@ -38,14 +40,17 @@ if(isset($_POST["usuario"]) && isset($_POST["clave"]) && isset($_POST["mail"]))
 		elseif($respuesta == 0)
 		{
 			echo "Error en los datos";
+			
 			break;
 		}
-		var_dump($respuesta);
+		elseif($respuesta == -1)
+		{
+			echo "Usuario no registrado";
+			break;
+		}
+
 	}
-	if($respuesta == -1)
-	{
-		echo "Usuario no registrado";
-	}
+	
 
 
 }
