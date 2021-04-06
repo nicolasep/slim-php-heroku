@@ -21,8 +21,9 @@ Hacer los métodos necesarios en la clase usuario
 if(isset($_POST["usuario"]) && isset($_POST["clave"]) && isset($_POST["mail"]))
 {
 	$usuarioVerificar = new Usuario($_POST["usuario"],$_POST["clave"],$_POST["mail"]);
-	
-	$arrayUsuarios = Archivos::LeerArchivo("nico");
+
+	$arrayUsuarios = Archivos::LeerArchivo("usuarios");
+
 	$respuesta=1;
 
 	foreach ($arrayUsuarios as $us) {
@@ -39,7 +40,7 @@ if(isset($_POST["usuario"]) && isset($_POST["clave"]) && isset($_POST["mail"]))
 			echo "Error en los datos";
 			break;
 		}
-		
+		var_dump($respuesta);
 	}
 	if($respuesta == -1)
 	{
