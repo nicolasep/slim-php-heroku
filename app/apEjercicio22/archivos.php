@@ -36,9 +36,9 @@ class Archivos
 	{
 		$resultado = false;
 
-		$miArchivo = fopen($nombreArchivo.".csv", "a");
+		$miArchivo = fopen($nombreArchivo.".json", "a");
 
-		if((fwrite($miArchivo,$datosACargar."\n")) != false)
+		if((fwrite($miArchivo,json_encode($datosACargar)."\n")) != false)
 		{
 			$resultado = true;
 		}
