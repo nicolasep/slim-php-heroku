@@ -61,27 +61,21 @@ if(isset($_GET["archivo"]))
 					}
 				}
 				
-				
 			}
 			fclose($miArchivo);
 	
 		}
 			echo "Usuarios cargados \n";
-			//echo $arrayUsuarios[0]->MostrarUsuario() ;
-
+			
 			$listaUs ="<ul> \n";
 			
 			foreach ($arrayUsuarios as $us) 
 			{
-			
 				$listaUs .= Usuario::ListarUsuario($us)."\n";
-				//var_dump($us);
-				//echo "--------\n";
 			}
 			$listaUs .="</ul>\n";
 			
 			echo $listaUs;
-			//return $listaUs;
 	}	
 }
 

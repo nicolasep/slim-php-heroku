@@ -1,0 +1,4 @@
+{"_id":4642,"_codigoDeBarra":"111111","_nombre":"notebook","_tipo":"portatil","_stock":20,"_precio":80000}
+{"_id":7857,"_codigoDeBarra":"222222","_nombre":"pc","_tipo":"escritorio","_stock":15,"_precio":50000}
+{"_id":7027,"_codigoDeBarra":"333333","_nombre":"monitor","_tipo":"led","_stock":40,"_precio":18000}
+{"_id":2028,"_codigoDeBarra":"6666","_nombre":"teclado","_tipo":"gamer","_stock":100,"_precio":2500}
