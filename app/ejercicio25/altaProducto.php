@@ -2,6 +2,8 @@
 
 include "producto.php";
 
+
+//Nicolas Eduardo Perez
 /*Aplicación Nº 25 ( AltaProducto)
 Archivo: altaProducto.php
 método:POST
