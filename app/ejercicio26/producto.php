@@ -104,7 +104,18 @@ class Producto
 		
 		return false;
 	}
-
+	static function ValidaProductoDisponible($codigoProducto, $cantidad, $producto)
+	{
+		if($codigoProducto == $producto->_codigoDeBarra)
+		{
+			if($producto->_stock >= $cantidad)
+			{
+				return 1;
+			}
+			return 0;
+		}
+		return -1;
+	}
 	static function CargarProductos()
 	{
 		$productos = array();

@@ -49,13 +49,12 @@ if(isset($_POST["codigoDeBarra"])&& isset($_POST["nombre"])&& isset($_POST["tipo
 			}
 			
 
-			
 		}
-
+		
 		foreach ($arrayProductos as $producto) 
 		{
-
-			if($productoNuevo->Equals($producto))
+			//COMPARO SI SON IGUALES, SI LO SON EQUIALS SUMA EL STOCK
+			if($producto->Equals($productoNuevo))
 			{
 				$productoIngresado = 1;
 				break;
@@ -64,7 +63,9 @@ if(isset($_POST["codigoDeBarra"])&& isset($_POST["nombre"])&& isset($_POST["tipo
 
 		if($productoIngresado == 0)
 		{
+			//AGREGA EL PRODUCTO NUEVO
 			Producto::AgregarProducto($productoNuevo);
+
 
 			//Acualizo la lista de productos en memoria
 			$arrayProductos = Producto::CargarProductos();
@@ -73,7 +74,17 @@ if(isset($_POST["codigoDeBarra"])&& isset($_POST["nombre"])&& isset($_POST["tipo
 		}
 		else
 		{
-			echo "Actualizado";
+			//GUARDA LOS PRODUCTOS EN EL ARCHIVO DESDE CERO PARA ACTUALIZAR LA MODIFICACION
+			if(Producto::AgregarProducto($arrayProductos,"w"))
+			{
+				echo "Actualizado";
+			}
+			else
+			{
+				echo "error";
+			}
+		
+			
 		}
 	}
 	else
