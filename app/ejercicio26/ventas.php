@@ -1,5 +1,5 @@
 <?php
-include "producto.php";
+include_once "producto.php";
 
 
 class Ventas
@@ -31,6 +31,10 @@ class Ventas
 		fclose($miArchivo);
 		
 		return true;
+	}
+	public function MostrarVenta()
+	{
+		return "Id usuario: ".$this->idUsuario." Producto: ".$this->nombreProducto." Tipo: ".$this->tipo." Cantidad: ".$this->cantidadComprada." Total a pagar: ".$this->totalAPagar."\n";
 	}
 
 }

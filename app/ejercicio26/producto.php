@@ -90,9 +90,9 @@ class Producto
 		
 		return false;
 	}
-	static function ValidaProductoDisponible($codigoProducto, $cantidad, $producto)
+	static function ValidaProductoDisponible($idProducto, $cantidad, $producto)
 	{
-		if($codigoProducto == $producto->_codigoDeBarra)
+		if($idProducto == $producto->_id)
 		{
 			if($producto->_stock >= $cantidad)
 			{
@@ -140,6 +140,11 @@ class Producto
 	public function DescontarStock($cantidad)
 	{
 		$this->_stock -=$cantidad;
+	}
+
+	public function MostrarProducto()
+	{
+		return "Id: ". $this->_id." Producto: ".$this->_nombre." Stock: ".$this->_stock;
 	}
 
 }

@@ -26,7 +26,7 @@ class Usuario
 	{
 		$estado = false;
 
-		if(!(empty($usuario->_nombre))&& !(empty($usuario->_apellido))&& !(empty($usuario->_nombreFoto)))
+		if(!(empty($usuario->_nombre))&& !(empty($usuario->_apellido))&& !(empty($usuario->_id)))
 		{
 			$estado = true;	
 		}
@@ -37,6 +37,7 @@ class Usuario
 	static function Add($usuario)
 	{
 		
+		
 		if(Usuario::ValidarUsuario($usuario))
 		{
 			$miArchivo = fopen("usuarios.json", "a");
@@ -45,6 +46,7 @@ class Usuario
 			
 			
 			fclose($miArchivo);
+
 			
 			return true;
 		}
@@ -53,7 +55,7 @@ class Usuario
 
 	public function MostrarUsuario()
 	{
-		return $this->_apellido." , ".$this->_nombre." , ".$this->_nombreFoto;
+		return "Id: ".$this->_id." Apellido: ".$this->_apellido." Nombre: ".$this->_nombre;
 	}
 	static function ListarUsuario($usuario)
 	{
@@ -63,13 +65,13 @@ class Usuario
 	{
 		return ($this->_id == $usuario->_id && $this->_nombre == $usuario->_nombre && $this->_apellido == $usuario->_apellido);
 	}
-	public function ValidarPordId($id)
+	public function ValidarPorId($id)
 	{
 		return $this->_id == $id;
 	}
 	static function RecuperarUsuarios()
 	{
-		$arrayUsuarios;
+		$arrayUsuarios = array();
 		$lineaLeida;
 
 		$miArchivo = fopen("usuarios.json", "r");
@@ -85,8 +87,8 @@ class Usuario
 				if(!is_null($arrayJson))
 				{
 					$auxUsuario = new Usuario($arrayJson["_nombre"],$arrayJson["_apellido"],$arrayJson["_id"]);
-		
-					array_push($arrayUsuarios, $auxUsuario)
+					
+					array_push($arrayUsuarios, $auxUsuario);
 					
 				}
 				
