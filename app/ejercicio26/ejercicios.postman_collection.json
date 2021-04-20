@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "1a5fe51b-2393-42ab-969e-bcd743886915",
+		"name": "ejercicios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localHost/Programacion_3/slim-php-heroku/app/apEjercicio20/Registro.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "nicolas",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "aaa@cgfa.com",
+							"type": "text"
+						},
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/D:/Descargas/admin.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localHost/Programacion_3/slim-php-heroku/app/apEjercicio23/Registro.php",
+					"host": [
+						"localHost"
+					],
+					"path": [
+						"Programacion_3",
+						"slim-php-heroku",
+						"app",
+						"apEjercicio23",
+						"Registro.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localHost/Programacion_3/slim-php-heroku/app/ejercicio24/listado.php?archivo=usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localHost/Programacion_3/slim-php-heroku/app/ejercicio24/listado.php?archivo=usuarios",
+					"protocol": "http",
+					"host": [
+						"localHost"
+					],
+					"path": [
+						"Programacion_3",
+						"slim-php-heroku",
+						"app",
+						"ejercicio24",
+						"listado.php"
+					],
+					"query": [
+						{
+							"key": "archivo",
+							"value": "usuarios"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localHost/app/ejercicio25/altaProducto.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "codigoDeBarra",
+							"value": "6666",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "teclado",
+							"type": "text"
+						},
+						{
+							"key": "tipo",
+							"value": "gamer",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "5000",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "2500",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localHost/app/ejercicio25/altaProducto.php",
+					"host": [
+						"localHost"
+					],
+					"path": [
+						"app",
+						"ejercicio25",
+						"altaProducto.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localHost/Programacion_3/slim-php-heroku/app/ejercicio26/RealizarVenta.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "codigoProducto",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "idUsuario",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localHost/Programacion_3/slim-php-heroku/app/ejercicio26/RealizarVenta.php",
+					"protocol": "http",
+					"host": [
+						"localHost"
+					],
+					"path": [
+						"Programacion_3",
+						"slim-php-heroku",
+						"app",
+						"ejercicio26",
+						"RealizarVenta.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
