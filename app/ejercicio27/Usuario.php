@@ -22,11 +22,12 @@ class Usuario
 		$this->fecha_de_registro = date("Y-m-d");
 	}
 
-	static function ValidarUsuario(Usuario $usuario)
+	private function ValidarUsuario()
 	{
 		$estado = false;
 
-		if(!(empty($usuario->nombre))&& !(empty($usuario->clave))&& !(empty($usuario->mail)))
+		if(!(empty($this->nombre))&& !(empty($this->apellido)&& !(empty($this->clave))&& 
+			!(empty($this->mail))))
 		{
 			$estado = true;	
 		}
@@ -34,23 +35,23 @@ class Usuario
 		return $estado;
 	}
 
-	static function Add($usuario)
+	public function Add()
 	{
 		
-		if(Usuario::ValidarUsuario($usuario))
+		if($this->ValidarUsuario())
 		{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 				$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into usuario (nombre,apellido,clave,mail,fecha_de_registro)values(:nombre,:apellido,:clave,:mail,:fecha_de_registro)");
 
-				$consulta->bindValue(':nombre',$usuario->nombre, PDO::PARAM_STR);
-				$consulta->bindValue(':apellido',$usuario->apellido, PDO::PARAM_STR);
-				$consulta->bindValue(':clave',$usuario->clave, PDO::PARAM_INT);
-				$consulta->bindValue(':mail', $usuario->mail, PDO::PARAM_STR);
-				$consulta->bindValue(':fecha_de_registro',$usuario->fecha_de_registro, PDO::PARAM_STR);
+				$consulta->bindValue(':nombre',$this->nombre, PDO::PARAM_STR);
+				$consulta->bindValue(':apellido',$this->apellido, PDO::PARAM_STR);
+				$consulta->bindValue(':clave',$this->clave, PDO::PARAM_INT);
+				$consulta->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+				$consulta->bindValue(':fecha_de_registro',$this->fecha_de_registro, PDO::PARAM_STR);
 				$consulta->execute();		
-				//return $objetoAccesoDato->RetornarUltimoIdInsertado();
+				return $objetoAccesoDato->RetornarUltimoIdInsertado();
 			
-			return true;
+			//return true;
 		}
 
 		return false;

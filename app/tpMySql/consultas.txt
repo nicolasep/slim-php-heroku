@@ -1,0 +1,124 @@
+Nicolas Eduardo Perez
+CONSULTAS
+1: Obtener los detalles completos de todos los usuarios, ordenados alfabéticamente.
+
+	SELECT * FROM `usuario` ORDER BY `nombre` 
+
+2: Obtener los detalles completos de todos los productos líquidos.
+
+	SELECT * FROM `producto` WHERE tipo = 'liquido'
+ 
+3: Obtener todas las compras en los cuales la cantidad esté entre 6 y 10 inclusive.
+
+	SELECT * FROM `venta` WHERE cantidad >= 6 AND cantidad <= 10
+
+4: Obtener la cantidad total de todos los productos vendidos.
+
+	SELECT SUM(cantidad) FROM `venta` 
+
+5: Mostrar los primeros 3 números de productos que se han enviado.
+
+	SELECT id_producto FROM `venta` LIMIT 3 
+
+6: Mostrar los nombres del usuario y los nombres de los productos de cada venta.
+
+	SELECT usuario.id, usuario.nombre, producto.nombre FROM usuario,producto, venta 
+	WHERE usuario.id = venta.id_usuario AND producto.id = venta.id_producto 
+	
+	SELECT usuario.nombre, producto.nombre FROM usuario,producto
+    INNER JOIN venta WHERE venta.id_usuario = usuario.id AND venta.id_producto = producto.id
+
+7: Indicar el monto (cantidad * precio) por cada una de las ventas.
+
+	SELECT producto.precio*venta.cantidad from producto,venta WHERE producto.id = venta.id_producto 
+
+8: Obtener la cantidad total del producto 1003 vendido por el usuario 104.
+
+	SELECT SUM(cantidad) FROM venta WHERE venta.id_producto = 3 AND venta.id_usuario=4 
+
+9: Obtener todos los números de los productos vendidos por algún usuario de ‘Avellaneda’.
+
+	SELECT venta.id_producto FROM venta,usuario WHERE venta.id_usuario = usuario.id AND usuario.localidad = 'Avellaneda' 
+
+10: Obtener los datos completos de los usuarios cuyos nombres contengan la letra ‘u’.
+
+	SELECT * FROM `usuario` WHERE usuario.nombre LIKE '%o%' 
+
+Cambie la condicion para que busque los que contienen 'o' por 'u' no contiene ninguno
+
+11: Traer las ventas entre junio del 2020 y febrero 2021.
+		
+	SELECT venta.fecha_de_venta FROM venta WHERE venta.fecha_de_venta BETWEEN 20200601 AND 20210228 
+
+12: Obtener los usuarios registrados antes del 2021.
+
+	SELECT * FROM `usuario` WHERE usuario.fecha_de_registro < 20210101 
+
+13: Agregar el producto llamado ‘Chocolate’, de tipo Sólido y con un precio de 25,35.
+
+	INSERT INTO `producto`(`codigo_de_barra`, `nombre`, `tipo`, `precio`) 
+	VALUES ('000001','chocolate','solido','25.35')
+
+14: Insertar un nuevo usuario .
+	
+	INSERT INTO `usuario`(`nombre`, `apellido`, `clave`, `mail`, `fecha_de_registro`, `localidad`) 
+	VALUES ('nicolas','gomez','654321','ejemplo@gmail.com','2021-02-18','Lanus')
+
+15: Cambiar los precios de los productos de tipo sólido a 66,60.
+
+	UPDATE `producto` SET `precio`='66.60' WHERE producto.tipo = 'solido'
+
+16: Cambiar el stock a 0 de todos los productos cuyas cantidades de stock sean menores
+a 20 inclusive.
+
+	UPDATE `producto` SET `stock`= 0 WHERE producto.stock <= 20
+
+17: Eliminar el producto número 1010.
+
+	DELETE FROM `producto` WHERE `id` = 10
+
+18: Eliminar a todos los usuarios que no han vendido productos.
+
+	DELETE FROM usuario WHERE usuario.id NOT IN (SELECT venta.id_usuario FROM venta) 
+
+
+
+INSERT INTO `producto`(`codigo_de_barra`, `nombre`, `tipo`, `stock`, `precio`, `fecha_de_creacion`, `fecha_de_modificacion`) 
+VALUES 
+('900361','Westmacott','liquido','33','15.87','2021-2-9','2020-9-26'),
+('900362','Spirit','solido','45','69.74','2020-9-18','2020-4-14'),
+('900363','Newgrosh','polvo','14','68.19','2020-11-29','2021-2-11'),
+('900364','McNickle','polvo','19','53.51','2020-11-28','2020-4-17'),
+('900365','Hudd','solido','68','26.56','2020-12-19','2020-6-19'),
+('900366','Schrader','polvo','17','96.54','2020-8-2','2020-4-18'),
+('900367','Bachellier','solido','59','69.17','202-1-30','2020-6-7'),
+('900368','Fleming','solido','38','66.77','2020-10-26','2020-10-3'),
+('900369','Hurry','solido','44','43.01','2020-7-4','2020-5-30'),
+('900310','Krauss','polvo','73','35.73','2021-3-3','2020-8-30')
+
+
+INSERT INTO `usuario`(`nombre`, `apellido`, `clave`, `mail`, `fecha_de_registro`,`localidad`) VALUES 
+('Mariano','Kautor','123456','dkantor0@example.com','2020-1-7','Quilmes'),
+('German','Gerram','123456','ggerram1@hud.gov','2020-5-8','Berazategui'),
+('Deloris','Fosis','123456','bsharpe2@wisc.edu','2020-11-28','Avellaneda'),
+('Brok','Neiner','123456','bblazic3@desdev.cn','2020-12-8','Quilmes'),
+('Garrick','Brent','123456','gbrent4@theguardian.com','2020-12-17','Moron'),
+('Bili','Baus','123456','bhoff5@addthis.com','2020-11-27','Moreno')
+
+
+INSERT INTO `venta`(`id_producto`, `id_usuario`, `cantidad`, `fecha_de_venta`) VALUES 
+('1','1','2','2020-7-19'),
+('8','2','3','2020-8-16'),
+('7','2','4','2021-1-24'),
+('6','3','5','2021-1-24'),
+('3','4','6','2021-3-30'),
+('5','5','7','2021-2-22'),
+('3','4','6','2020-12-2'),
+('3','6','6','2020-6-10'),
+('2','6','6','2021-2-4'),
+('1','6','1','2020-5-17')
+
+
+
+
+

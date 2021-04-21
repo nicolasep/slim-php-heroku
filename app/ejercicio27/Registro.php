@@ -21,9 +21,9 @@ retorna si se pudo agregar o no.
 
 		$nuevoUsuario = new Usuario($_POST["nombre"],$_POST["apellido"],$_POST["clave"],$_POST["mail"],$_POST["localidad"]);
 		
-		if(Usuario::Add($nuevoUsuario))
+		if($ultimoId = $nuevoUsuario->Add())
 		{
-			echo "Usuario agregado con exito!!\n";
+			echo "Usuario agregado con exito!!\n"."Ultimo id es: ".$ultimoId;
 		}
 		else
 		{
