@@ -1,6 +1,6 @@
 <?php
 
-include "usuario.php";
+include "Usuario.php";
 include "venta.php";
 include "producto.php";
 
@@ -34,6 +34,7 @@ if(isset($_GET["archivo"]))
 	{
 		$arrayUsuarios = Usuario::RetornarUsuarios();
 	
+		
 		
 			echo "Usuarios cargados \n";
 			
