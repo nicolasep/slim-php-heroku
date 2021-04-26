@@ -1,6 +1,8 @@
 <?php
 
-include "Usuario.php";
+include "usuario.php";
+include "venta.php";
+include "producto.php";
 
 /*
 Nicolas Eduardo Perez
@@ -28,22 +30,53 @@ if(!file_exists("usuarios.json"))
 
 if(isset($_GET["archivo"]))
 {
-	if($_GET["archivo"]=="usuario")
+	if($_GET["archivo"]=="usuarios")
 	{
 		$arrayUsuarios = Usuario::RetornarUsuarios();
 	
 		
 			echo "Usuarios cargados \n";
 			
-			$listaUs ="<ul> \n";
+			echo "<ul> \n";
 			
 			foreach ($arrayUsuarios as $us) 
 			{
-				$listaUs .= Usuario::ListarUsuario($us)."\n";
+				echo $us->ListarUsuario();
 			}
-			$listaUs .="</ul>\n";
+			echo "</ul>\n";
 			
-			echo $listaUs;
+			
+	}
+	elseif ($_GET["archivo"]=="productos") 
+	{
+
+			$arrayProductos = Producto::RetornarProductos();
+	
+		
+			echo "Productos cargados \n";
+			
+			echo "<ul> \n";
+			
+			foreach ($arrayProductos as $prod) 
+			{
+				echo $prod->ListarProducto();
+			}
+			echo "</ul>\n";
+	}
+	elseif ($_GET["archivo"]=="ventas") 
+	{
+			$arrayVentas = Venta::RetornarVentas();
+	
+		
+			echo "Ventas cargadas \n";
+			
+			echo "<ul> \n";
+			
+			foreach ($arrayVentas as $ven) 
+			{
+				echo $ven->ListarVenta();
+			}
+			echo "</ul>\n";
 	}	
 }
 
