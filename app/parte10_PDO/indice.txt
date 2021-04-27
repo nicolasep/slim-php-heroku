@@ -1,0 +1,12 @@
+
+A: Usuario.php linea 16
+B: productos.php linea 18
+C: venta.php linea 15
+D: venta.php linea 24
+E: venta.php linea 34
+F: venta.php linea 43
+G: venta.php linea 52
+H: venta.php linea 61
+I: venta.php linea 71
+J: Usuario.php linea 34
+K:
