@@ -1,7 +1,8 @@
 <?php
 
-//require "AccesoDatos.php";
-include_once "AccesoDatos.php";
+require "AccesoDatos.php";
+//include_once "AccesoDatos.php";
+
 class Producto
 {
 	private $id;
@@ -31,7 +32,7 @@ class Producto
     {
         
     }
-	function __construct8($codigo_de_barra,$nombre, $tipo, $stock,$precio,$fecha_de_creacion=null,
+	function __construct5($codigo_de_barra,$nombre, $tipo, $stock,$precio,$fecha_de_creacion=null,
 								$fecha_de_modificacion=null,$id=null)
 	{
 
@@ -87,19 +88,20 @@ class Producto
 		if($this->ValidarProducto())
 		{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-				$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into producto (codigo_de_barra, nombre,tipo,stock,precio,fecha_de_creacion,fecha_de_modificacion)values(:codigo_de_barra,:nombre,:tipo,:stock,:fecha_de_creacion,:fecha_de_modificacion)");
+			$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into producto (codigo_de_barra, nombre,tipo,stock,precio,fecha_de_creacion,fecha_de_modificacion)values(:codigo_de_barra,:nombre,:tipo,:stock,:precio,:fecha_de_creacion,:fecha_de_modificacion)");
 
-				$consulta->bindValue(':codigo_de_barra',$this->codigo_de_barra, PDO::PARAM_STR);
-				$consulta->bindValue(':nombre',$this->nombre, PDO::PARAM_STR);
-				$consulta->bindValue(':tipo',$this->tipo, PDO::PARAM_STR);
-				$consulta->bindValue(':stock', $this->stock, PDO::PARAM_INT);
-				$consulta->bindValue(':precio',$this->precio, PDO::PARAM_INT);
-				$consulta->bindValue(':fecha_de_creacion',$this->fecha_de_creacion, PDO::PARAM_STR);
-				$consulta->bindValue(':fecha_de_modificacion',$this->fecha_de_modificacion, PDO::PARAM_STR);
-				$consulta->execute();		
+			$consulta->bindValue(':codigo_de_barra',$this->codigo_de_barra, PDO::PARAM_STR);
+			$consulta->bindValue(':nombre',$this->nombre, PDO::PARAM_STR);
+			$consulta->bindValue(':tipo',$this->tipo, PDO::PARAM_STR);
+			$consulta->bindValue(':stock', $this->stock, PDO::PARAM_INT);
+			$consulta->bindValue(':precio',$this->precio, PDO::PARAM_INT);
+			$consulta->bindValue(':fecha_de_creacion',$this->fecha_de_creacion, PDO::PARAM_STR);
+			$consulta->bindValue(':fecha_de_modificacion',$this->fecha_de_modificacion, PDO::PARAM_STR);
+			if($consulta->execute())
+			{
 				return $objetoAccesoDato->RetornarUltimoIdInsertado();
-			
-			//return true;
+			}		
+				
 		}
 
 		return false;
@@ -108,6 +110,42 @@ class Producto
 	public function ListarProducto()
 	{
 		return "<li>". $this->id." ".$this->codigo_de_barra." ".$this->nombre." ".$this->tipo." ".$this->stock." ".$this->precio." ".$this->fecha_de_creacion." ".$this->fecha_de_modificacion."</li>"."\n";
+	}
+	public function Equals($prod)
+	{
+		if($this->codigo_de_barra == $prod->codigo_de_barra && $this->nombre == $prod->nombre && 
+			$this->tipo == $prod->tipo && $this->precio == $prod->precio)
+		{
+			return true;
+
+		}
+		return false;
+	}
+	public function ValidarExistenciaEnBd($lista)
+	{
+		foreach ($lista as $prod) 
+		{
+			if($this->Equals($prod))
+			{
+				return $prod;
+
+			}
+		}
+
+		return false;
+	}
+
+	public function ModificarStockProducto($prod)
+	{
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE producto SET stock = :stock WHERE id=:idProd");
+		$consulta->bindValue(':idProd',$this->id, PDO::PARAM_INT);
+		$consulta->bindValue(':stock', $this->stock+$prod->stock, PDO::PARAM_INT);
+		if($consulta->execute())
+		{
+			return true;
+		}
+
 	}
 
 }

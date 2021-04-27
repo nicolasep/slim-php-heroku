@@ -2,6 +2,7 @@
 
 //require "AccesoDatos.php";
 include_once "AccesoDatos.php";
+
 class Venta
 {
 	private $id;
@@ -30,7 +31,7 @@ class Venta
     {
         
     }
-	function __construct5($id_producto,$id_usuario, $cantidad,$fecha_de_venta=null,$id=null)
+	function __construct3($id_producto,$id_usuario, $cantidad,$fecha_de_venta=null,$id=null)
 	{
 
 		$this->id_producto = $id_producto;
@@ -61,7 +62,7 @@ class Venta
 	private function ValidarVenta()
 	{
 		$estado = false;
-
+		
 		if(!(empty($this->id_producto))&& !(empty($this->id_usuario))&& !(empty($this->cantidad))
 			&& !(empty($this->fecha_de_venta)))
 		{
@@ -70,22 +71,21 @@ class Venta
 		
 		return $estado;
 	}
-
-	public function Add()
+	public function AgregarVenta()
 	{
 		
 		if($this->ValidarVenta())
 		{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-				$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into producto (id_producto, id_usuario,cantidad,fecha_de_venta)values(:id_producto,:id_usuario,:cantidad,:fecha_de_venta)");
+			$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into venta (id_producto, id_usuario,cantidad,fecha_de_venta)values(:id_producto,:id_usuario,:cantidad,:fecha_de_venta)");
 
-				$consulta->bindValue(':id_producto',$this->id_producto, PDO::PARAM_INT);
-				$consulta->bindValue(':id_usuario',$this->id_usuario, PDO::PARAM_INT);
-				$consulta->bindValue(':cantidad',$this->cantidad, PDO::PARAM_INT);
-				$consulta->bindValue(':fecha_de_venta', $this->fecha_de_venta, PDO::PARAM_STR);
-				
-				$consulta->execute();		
-				return $objetoAccesoDato->RetornarUltimoIdInsertado();
+			$consulta->bindValue(':id_producto',$this->id_producto, PDO::PARAM_INT);
+			$consulta->bindValue(':id_usuario',$this->id_usuario, PDO::PARAM_INT);
+			$consulta->bindValue(':cantidad',$this->cantidad, PDO::PARAM_INT);
+			$consulta->bindValue(':fecha_de_venta', $this->fecha_de_venta, PDO::PARAM_STR);
+			
+			$consulta->execute();		
+			return $objetoAccesoDato->RetornarUltimoIdInsertado();
 			
 			//return true;
 		}
